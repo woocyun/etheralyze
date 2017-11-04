@@ -1,7 +1,18 @@
-import React from 'react';
+import { connect } from 'react-redux';
 
-const AppContainer = () => {
-  return <div>Hellllooo</div>;
-};
+import App from '../components/App';
+
+const mapStateToAppProps = (state) => ({
+
+});
+
+const mapDispatchToAppProps = (dispatch) => ({
+
+});
+
+const AppContainer = connect(
+  mapStateToAppProps,
+  mapDispatchToAppProps
+)(App);
 
 export default AppContainer;
