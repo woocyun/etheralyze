@@ -5,7 +5,7 @@ import cyan from 'material-ui/colors/cyan';
 import red from 'material-ui/colors/red';
 
 import Header from './Header';
-import Account from './Account';
+import AccountContainer from '../containers/AccountContainer';
 
 const theme = createMuiTheme({
   palette: {
@@ -20,7 +20,7 @@ const App = (props) => {
     <MuiThemeProvider theme={theme}>
       <div id="etheralyze">
         <Header />
-        <Account />
+        <AccountContainer />
       </div>
     </MuiThemeProvider>
   );

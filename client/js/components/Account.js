@@ -2,10 +2,12 @@ import React from 'react';
 
 import TextFieldSubmit from './TextFieldSubmit';
 
-const Account = () => {
+const Account = (props) => {
   return (
     <div>
-      <TextFieldSubmit />
+      <TextFieldSubmit
+        onAccountSearch={props.onAccountSearch}
+      />
     </div>
   );
 };

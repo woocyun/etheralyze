@@ -12,12 +12,17 @@ class TextFieldSubmit extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
     this.setState({
       address: event.target.value
     });
+  }
+
+  handleSubmit() {
+    this.props.onAccountSearch(this.state.address);
   }
 
   render() {
@@ -38,7 +43,10 @@ class TextFieldSubmit extends Component {
           <Grid item xs={1} sm={3}></Grid>
         </Grid>
         <div style={{textAlign: 'center'}}>
-          <Button color="primary">
+          <Button
+            color="primary"
+            onClick={this.handleSubmit}
+          >
             Search
           </Button>
         </div>
