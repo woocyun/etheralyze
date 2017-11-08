@@ -4,7 +4,7 @@ import { fetchAccount } from '../actions/account';
 import Account from '../components/Account';
 
 const mapStateToAccountProps = (state) => ({
-
+  account: state.account
 });
 
 const mapDispatchToAccountProps = dispatch => ({

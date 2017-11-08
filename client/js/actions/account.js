@@ -9,7 +9,7 @@ export const fetchAccount = account => {
       .then(response => {
         dispatch({
           type: FETCH_ACCOUNT,
-          payload: response.data.balance
+          payload: response.data
         });
       })
       .catch(error => {
