@@ -4,9 +4,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const path = require('path');
+const mongoose = require('mongoose');
 const routes = require('./config/routes');
 
 const app = express();
+
+mongoose.connect(process.env.MONGODB);
 
 app.set('port', process.env.PORT || 9000);
 app.set('view engine', 'ejs');

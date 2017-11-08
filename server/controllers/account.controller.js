@@ -1,30 +1,44 @@
 const Web3 = require('web3');
+const Transaction = require('../models/transaction');
+
 const web3 = new Web3(new Web3.providers.HttpProvider(process.env.INFURA));
 
 function getAccount(req, res) {
+  const address = req.params.id;
+
   const promises = [];
   
   const balancePromise = new Promise((resolve, reject) => {
-    web3.eth.getBalance(req.params.id, (err, balance) => {
+    web3.eth.getBalance(address, (err, balance) => {
       if (err) reject(err);
       resolve(balance);
     });
   });
 
   const transactionCountPromise = new Promise((resolve, reject) => {
-    web3.eth.getTransactionCount(req.params.id, (err, transactionCount) => {
+    web3.eth.getTransactionCount(address, (err, transactionCount) => {
       if (err) reject(err);
       resolve(transactionCount);
     });
   });
 
-  promises.push(balancePromise, transactionCountPromise);
+  const transactionsPromise = new Promise((resolve, reject) => {
+    Transaction.find({
+      $or: [{ to: address }, { from: address }]
+    }, (err, res) => {
+      if (err) reject(err);
+      resolve(res);
+    });
+  });
+
+  promises.push(balancePromise, transactionCountPromise, transactionsPromise);
 
   Promise.all(promises)
-    .then(([balance, transactionCount]) => {
+    .then(([balance, transactionCount, transactions]) => {
       res.send({
         balance: balance.toNumber(),
-        transactionCount
+        transactionCount,
+        transactions
       });
     })
     .catch(error => {
