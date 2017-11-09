@@ -25,7 +25,9 @@ const Account = (props) => {
                 transactionCount={props.account.transactionCount}
               />
               <Divider />
-              <TransactionList />
+              <TransactionList
+                transactions={props.account.transactions}
+              />
             </Paper>
           </Grid>
           <Grid item xs={1} sm={3}></Grid>
