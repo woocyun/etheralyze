@@ -22,7 +22,7 @@ class TextFieldSubmit extends Component {
   }
 
   handleSubmit() {
-    this.props.onAccountSearch(this.state.address);
+    this.props.onSubmit(this.state.address);
   }
 
   render() {
@@ -44,6 +44,7 @@ class TextFieldSubmit extends Component {
         </Grid>
         <div style={{textAlign: 'center'}}>
           <Button
+            className="submit-button"
             color="primary"
             onClick={this.handleSubmit}
           >

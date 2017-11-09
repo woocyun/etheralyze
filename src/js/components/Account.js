@@ -12,7 +12,7 @@ const Account = (props) => {
   return (
     <div className="account">
       <TextFieldSubmit
-        onAccountSearch={props.onAccountSearch}
+        onSubmit={props.onAccountSearch}
       />
       {
         props.account.balance ?
