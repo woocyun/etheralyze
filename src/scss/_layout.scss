@@ -1,3 +1,15 @@
 body {
   margin: 0;
 }
+
+.limit-200 {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.limit-80 {
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

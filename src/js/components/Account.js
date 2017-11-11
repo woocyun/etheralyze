@@ -15,12 +15,13 @@ const Account = (props) => {
         onSubmit={props.onAccountSearch}
       />
       {
-        props.account.balance ?
+        props.account ?
         <Grid container spacing={24}>
-          <Grid item xs={1} sm={3}></Grid>
-          <Grid item xs={10} sm={6}>
+          <Grid item xs={1}></Grid>
+          <Grid item xs={10}>
             <Paper className="paper">
               <AccountOverview
+                address={props.account.address}
                 balance={props.account.balance}
                 transactionCount={props.account.transactionCount}
               />
@@ -30,7 +31,7 @@ const Account = (props) => {
               />
             </Paper>
           </Grid>
-          <Grid item xs={1} sm={3}></Grid>
+          <Grid item xs={1}></Grid>
         </Grid> :
         <div></div>
       }

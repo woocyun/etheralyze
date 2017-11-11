@@ -29,7 +29,7 @@ function searchAccounts(req, res) {
 }
 
 function getAccount(req, res) {
-  const address = req.params.id;
+  const address = req.params.id.replace(/\s+/g, '');
 
   const promises = [];
   
@@ -72,6 +72,7 @@ function getAccount(req, res) {
   Promise.all(promises)
     .then(([balance, transactionCount, transactions]) => {
       res.send({
+        address,
         balance: balance.toNumber(),
         transactionCount,
         transactions

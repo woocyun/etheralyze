@@ -1,0 +1,14 @@
+.account-overview {
+  .val {
+    @include lt-xs {
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @include lt-sm {
+      max-width: 400px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
