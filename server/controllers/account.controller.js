@@ -16,19 +16,30 @@ function getAccount(req, res) {
   });
 
   const transactionCountPromise = new Promise((resolve, reject) => {
-    web3.eth.getTransactionCount(address, (err, transactionCount) => {
-      if (err) reject(err);
-      resolve(transactionCount);
-    });
+    Transaction
+      .find({
+        $or: [{ to: address }, { from: address }]
+      })
+      .count({}, (err, res) => {
+        if (err) reject(err);
+        resolve(res);
+      });
   });
 
   const transactionsPromise = new Promise((resolve, reject) => {
-    Transaction.find({
-      $or: [{ to: address }, { from: address }]
-    }, (err, res) => {
-      if (err) reject(err);
-      resolve(res);
-    });
+    Transaction
+      .find({
+        $or: [{ to: address }, { from: address }]
+      })
+      .limit(10)
+      .sort({
+        blockNumber: 'desc',
+        transactionIndex: 'desc'
+      })
+      .exec((err, res) => {
+        if (err) reject(err);
+        resolve(res);
+      });
   });
 
   promises.push(balancePromise, transactionCountPromise, transactionsPromise);
