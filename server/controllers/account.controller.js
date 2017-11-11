@@ -3,6 +3,31 @@ const Transaction = require('../models/transaction');
 
 const web3 = new Web3(new Web3.providers.HttpProvider(process.env.INFURA));
 
+function searchAccounts(req, res) {
+  const query = req.params.query;
+
+  Transaction
+    .find({
+      $or: [{
+        to: { $regex: query }
+      }, {
+        from: { $regex: query }
+      }]
+    })
+    .limit(10)
+    .exec((err, accounts) => {
+      if (err) {
+        res
+          .status(500)
+          .send(err);
+      }
+
+      res.send({
+        accounts
+      });
+    });
+}
+
 function getAccount(req, res) {
   const address = req.params.id;
 
@@ -61,5 +86,6 @@ function getAccount(req, res) {
 }
 
 module.exports = {
-  getAccount
+  getAccount,
+  searchAccounts
 };
