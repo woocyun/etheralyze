@@ -2,6 +2,11 @@ body {
   margin: 0;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .limit-200 {
   max-width: 200px;
   overflow: hidden;

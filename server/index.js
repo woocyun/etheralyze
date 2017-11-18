@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use('/api', routes);
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.render('index');
 });
 
