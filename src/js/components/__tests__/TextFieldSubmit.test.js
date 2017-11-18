@@ -16,7 +16,7 @@ describe('TextFieldSubmit', () => {
   });
 
   afterEach(() => {
-    
+    onSubmit.mockClear();
   });
 
   describe('user populates search field', () => {
