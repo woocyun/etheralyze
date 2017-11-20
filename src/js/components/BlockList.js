@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import Typography from 'material-ui/Typography';
 import Table, {
   TableBody,
@@ -12,15 +13,16 @@ import Table, {
 
 const BlockList = props => {
   return (
-    <div className="transaction-list">
+    <div className="block-list">
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell className="limit-80">Number</TableCell>
+            <TableCell>Number</TableCell>
             <TableCell>Age</TableCell>
             <TableCell>Txns</TableCell>
-            <TableCell className="limit-80">Uncles</TableCell>
-            <TableCell className="limit-80">Gas Used</TableCell>
+            <TableCell>Uncles</TableCell>
+            <TableCell className="limit-80">Miner</TableCell>
+            <TableCell>Gas Used</TableCell>
             <TableCell>Gas Limit</TableCell>
           </TableRow>
         </TableHead>
@@ -29,10 +31,11 @@ const BlockList = props => {
           props.blocks && props.blocks.map((block) => (
             <TableRow key={block.number}>
               <TableCell className="limit-80">{block.number}</TableCell>
-              <TableCell>{block.timestamp}</TableCell>
+              <TableCell>{moment(block.timestamp * 1000).fromNow()}</TableCell>
               <TableCell>{block.transactions.length}</TableCell>
               <TableCell className="limit-80">{block.uncles.length}</TableCell>
-              <TableCell className="limit-80">{block.gasUsed}</TableCell>
+              <TableCell className="limit-80">{block.miner}</TableCell>
+              <TableCell className="limit-80">{`${block.gasUsed} (${(block.gasUsed / block.gasLimit * 100).toFixed(2)}%)`}</TableCell>
               <TableCell>{block.gasLimit}</TableCell>
             </TableRow>
           ))
@@ -40,7 +43,7 @@ const BlockList = props => {
         </TableBody>
       </Table>
     </div>
-  )
+  );
 };
 
 export default BlockList;

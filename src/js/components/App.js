@@ -10,7 +10,6 @@ import red from 'material-ui/colors/red';
 import Header from './Header';
 import AccountContainer from '../containers/AccountContainer';
 import BlocksDisplayContainer from '../containers/BlocksDisplayContainer';
-import Blocks from '../components/Blocks';
 
 const theme = createMuiTheme({
   palette: {
