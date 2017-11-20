@@ -1,6 +1,6 @@
 import {
   FETCH_ACCOUNT
-} from '../actions/account';
+} from '../actions/AccountActions';
 
 const initialState = null;
 

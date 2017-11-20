@@ -9,6 +9,7 @@ import red from 'material-ui/colors/red';
 
 import Header from './Header';
 import AccountContainer from '../containers/AccountContainer';
+import BlocksDisplayContainer from '../containers/BlocksDisplayContainer';
 import Blocks from '../components/Blocks';
 
 const theme = createMuiTheme({
@@ -25,7 +26,7 @@ const App = (props) => {
       <div id="etheralyze">
         <Header />
         <Route path="/account" component={AccountContainer} />
-        <Route path="/blocks" component={Blocks} />
+        <Route path="/blocks" component={BlocksDisplayContainer} />
       </div>
     </MuiThemeProvider>
   );
