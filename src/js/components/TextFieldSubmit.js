@@ -27,13 +27,12 @@ class TextFieldSubmit extends Component {
 
   render() {
     return (
-      <div>
+      <div className="text-field-submit">
         <Grid container spacing={24}>
           <Grid item xs={1} sm={3}></Grid>
           <Grid item xs={10} sm={6}>
             <TextField
-              id="Address"
-              label="Address"
+              label={this.props.label}
               value={this.state.address}
               onChange={this.handleChange}
               margin="normal"
