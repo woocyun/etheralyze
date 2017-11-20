@@ -9,7 +9,13 @@ const routes = require('./config/routes');
 
 const app = express();
 
-mongoose.connect(process.env.MONGODB);
+// Bypass deprecation warning: https://github.com/Automattic/mongoose/issues/5399
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB, {
+  keepAlive: true,
+  reconnectTries: Number.MAX_VALUE,
+  useMongoClient: true
+});
 
 app.set('port', process.env.PORT || 9000);
 app.set('view engine', 'ejs');
