@@ -18,7 +18,7 @@ const BlockList = props => {
         <TableHead>
           <TableRow>
             <TableCell>Number</TableCell>
-            <TableCell>Age</TableCell>
+            <TableCell>Date Mined</TableCell>
             <TableCell>Txns</TableCell>
             <TableCell>Uncles</TableCell>
             <TableCell className="limit-80">Miner</TableCell>
@@ -31,7 +31,7 @@ const BlockList = props => {
           props.blocks && props.blocks.map((block) => (
             <TableRow key={block.number}>
               <TableCell className="limit-80">{block.number}</TableCell>
-              <TableCell>{moment(block.timestamp * 1000).fromNow()}</TableCell>
+              <TableCell>{getDisplayDate(block.timestamp)}</TableCell>
               <TableCell>{block.transactions.length}</TableCell>
               <TableCell className="limit-80">{block.uncles.length}</TableCell>
               <TableCell className="limit-80">{block.miner}</TableCell>
@@ -41,9 +41,20 @@ const BlockList = props => {
           ))
         }
         </TableBody>
+        {/* <TableFooter>
+          <TableRow>
+            <TablePagination
+              count={50}
+            />
+          </TableRow>
+        </TableFooter> */}
       </Table>
     </div>
   );
+
+  function getDisplayDate(timestamp) {
+    return moment(timestamp * 1000).format('MM/DD/YY kk:mm');
+  }
 };
 
 export default BlockList;
