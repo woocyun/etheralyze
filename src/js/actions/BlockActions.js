@@ -1,19 +1,49 @@
 import axios from 'axios';
 
-export const FETCH_BLOCKS = 'FETCH_BLOCKS';
+export const FETCH_BLOCKS_REQUESTED = 'FETCH_BLOCKS_REQUESTED';
+export const FETCH_BLOCKS_RESOLVED = 'FETCH_BLOCKS_RESOLVED';
+export const FETCH_BLOCKS_SUCCESS = 'FETCH_BLOCKS_SUCCESS';
+export const FETCH_BLOCKS_ERROR = 'FETCH_BLOCKS_ERROR';
 
 export const fetchBlocks = () => {
   return (dispatch) => {
+    fetchBlocksRequested(dispatch);
+
     return axios
       .get(`/api/blocks`)
       .then(response => {
-        dispatch({
-          type: FETCH_BLOCKS,
-          payload: response.data
-        });
+        fetchBlocksResolved(dispatch);
+        fetchBlocksSuccess(dispatch, response.data);
       })
       .catch(error => {
-
+        fetchBlocksResolved(dispatch);
+        fetchBlocksError(dispatch, error);
       });
   };
 };
+
+function fetchBlocksRequested(dispatch) {
+  dispatch({
+    type: FETCH_BLOCKS_REQUESTED
+  });
+}
+
+function fetchBlocksResolved(dispatch) {
+  dispatch({
+    type: FETCH_BLOCKS_RESOLVED,
+  });
+}
+
+function fetchBlocksSuccess(dispatch, payload) {
+  dispatch({
+    type: FETCH_BLOCKS_SUCCESS,
+    payload
+  });
+}
+
+function fetchBlocksError(dispatch, payload) {
+  dispatch({
+    type: FETCH_BLOCKS_ERROR,
+    payload
+  });
+}

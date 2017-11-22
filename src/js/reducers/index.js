@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
 import account from './accounts';
-import { blocks } from './blocks';
+import { blocks, blockPagination } from './blocks';
 
 export default combineReducers({
   account,
-  blocks
+  blocks,
+  blockPagination
 });
