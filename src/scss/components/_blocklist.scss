@@ -1,3 +1,6 @@
 .block-list {
-  
+  overflow: auto;
+  &__header {
+    flex: 1
+  }
 }

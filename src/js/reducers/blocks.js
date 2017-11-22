@@ -14,7 +14,7 @@ export const blocks = (state = [], action) => {
   }
 };
 
-export const blockPagination = (state = null, action) => {
+export const blockPagination = (state = {}, action) => {
   switch (action.type) {
     case FETCH_BLOCKS_SUCCESS:
       return action.payload.pagination;

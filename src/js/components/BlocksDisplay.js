@@ -32,6 +32,7 @@ class BlocksDisplay extends Component {
                 />
                 <Divider /> */}
                 <BlockList
+                  blockPagination={this.props.blockPagination}
                   blocks={this.props.blocks}
                 />
               </Paper>
