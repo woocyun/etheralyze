@@ -11,7 +11,7 @@ class BlocksDisplay extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchBlocksOnMount();
+    this.props.fetchBlocks();
   }
 
   render() {
@@ -34,6 +34,7 @@ class BlocksDisplay extends Component {
                 <BlockList
                   blockPagination={this.props.blockPagination}
                   blocks={this.props.blocks}
+                  onPageChange={this.props.fetchBlocks}
                 />
               </Paper>
             </Grid>

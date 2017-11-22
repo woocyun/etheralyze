@@ -1,39 +1,26 @@
 const Web3 = require('web3');
+const async = require('async');
 const Block = require('../models/block.model');
-
+const blockHelpers = require('../util/blockhelpers');
 const web3 = new Web3(new Web3.providers.HttpProvider(process.env.INFURA));
 
 function getBlocks(req, res) {
-  const promises = [];
+  const page = Number(req.query.page);
+  const qty = Number(req.query.qty);
 
-  promises.push(
-    new Promise((resolve, reject) => {
-      Block.count()
-        .exec((err, count) => {
-          if (err) reject(err);
-          resolve(count);
-        });
-    }),
-    new Promise((resolve, reject) => {
-      Block
-        .find({})
-        .sort({ number: -1 })
-        .limit(50)
-        .exec((err, blocks) => {
-          if (err) reject(err);
-          resolve(blocks);
-        });
+  blockHelpers
+    .getBlockCount()
+    .then(count => {
+      return blockHelpers.getBlocksInRange(
+        count - (page * qty),
+        count - (page * qty + qty + 1)
+      )
+        .then(blocks => ({count, blocks}));
     })
-  );
-
-  Promise.all(promises)
-    .then(response => {
-      const totalBlocks = response[0];
-      const blocks = response[1];
-
+    .then(({ count, blocks }) => {
       res.send({
         pagination: {
-          total: totalBlocks
+          total: count
         },
         blocks
       });

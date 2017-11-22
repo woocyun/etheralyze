@@ -9,8 +9,8 @@ const mapStateToAccountProps = (state) => ({
 });
 
 const mapDispatchToAccountProps = dispatch => ({
-  fetchBlocksOnMount: () => {
-    dispatch(fetchBlocks());
+  fetchBlocks: (page, qty) => {
+    dispatch(fetchBlocks(page, qty));
   }
 });
 

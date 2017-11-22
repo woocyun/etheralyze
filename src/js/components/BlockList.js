@@ -24,6 +24,7 @@ class BlockList extends Component {
     };
 
     this.handleChangePage = this.handleChangePage.bind(this);
+    this.paginationLabel = this.paginationLabel.bind(this);
   }
 
   getDisplayDate(timestamp) {
@@ -32,10 +33,15 @@ class BlockList extends Component {
 
   handleChangePage(evt, page) {
     this.setState({ page });
+    this.props.onPageChange(page, this.state.rowsPerPage);
   }
 
   handleChangeRowsPerPage(arg, arg2) {
     console.log(arg, arg2);
+  }
+
+  paginationLabel({ from, to, count }) {
+    return `Page ${ this.state.page + 1 } of ${ parseInt(count / this.state.rowsPerPage) }`;
   }
 
   render() {
@@ -101,6 +107,7 @@ class BlockList extends Component {
                 onChangePage={this.handleChangePage}
                 onChangeRowsPerPage={this.handleChangeRowsPerPage}
                 rowsPerPageOptions={this.state.rowsPerPageOptions}
+                labelDisplayedRows={this.paginationLabel}
               />
             </TableRow>
           </TableFooter>
