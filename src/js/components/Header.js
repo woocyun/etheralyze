@@ -19,9 +19,12 @@ const Header = () => {
             <Link to="/blocks">
               <Button color="contrast">Blocks</Button>
             </Link>
-            <Link to="/account">
-              <Button color="contrast">Account</Button>
+            <Link to="/transactions">
+              <Button color="contrast">Transactions</Button>
             </Link>
+            {/* <Link to="/account">
+              <Button color="contrast">Account</Button>
+            </Link> */}
           </nav>
         </Toolbar>
       </AppBar>

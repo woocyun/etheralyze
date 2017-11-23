@@ -1,5 +1,5 @@
 const Web3 = require('web3');
-const Transaction = require('../models/transaction');
+const Transaction = require('../models/transaction.model');
 
 const web3 = new Web3(new Web3.providers.HttpProvider(process.env.INFURA));
 
