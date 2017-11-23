@@ -1,0 +1,27 @@
+.page-navigation {
+  position: relative;
+  text-align: center;
+  &__arrows {
+    display: inline-block;
+    margin-right: 40px;
+    position: relative;
+    top: 3px;
+    .text {
+      position: relative;
+      top: -8px;
+    }
+  }
+  &__specific {
+    display: inline-block;
+    button {
+      min-height: unset;
+      padding: 4px;
+      margin-right: 16px;
+      position: relative;
+      top: -6px;
+    }
+    .MuiFormControl-root-172 {
+      margin-top: 0;
+    }
+  }
+}

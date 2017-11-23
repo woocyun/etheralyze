@@ -12,8 +12,8 @@ function getBlocks(req, res) {
     .getBlockCount()
     .then(count => {
       return blockHelpers.getBlocksInRange(
-        count - (page * qty),
-        count - (page * qty + qty + 1)
+        count - ((page - 1) * qty),
+        count - ((page - 1) * qty + qty + 1)
       )
         .then(blocks => ({count, blocks}));
     })

@@ -5,7 +5,7 @@ export const FETCH_BLOCKS_RESOLVED = 'FETCH_BLOCKS_RESOLVED';
 export const FETCH_BLOCKS_SUCCESS = 'FETCH_BLOCKS_SUCCESS';
 export const FETCH_BLOCKS_ERROR = 'FETCH_BLOCKS_ERROR';
 
-export const fetchBlocks = (page = 0, qty = 10) => {
+export const fetchBlocks = (page = 1, qty = 10) => {
   return (dispatch) => {
     fetchBlocksRequested(dispatch);
 
