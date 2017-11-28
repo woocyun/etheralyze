@@ -30,6 +30,20 @@ function getBlocks(req, res) {
     });
 }
 
+function getBlock(req, res) {
+  const blockNumber = Number(req.query.number);
+
+  blockHelpers
+    .getBlockByNumber(blockNumber)
+    .then(block => {
+      res.send(block);
+    })
+    .catch(err => {
+      res.status(400).send(err);
+    });
+}
+
 module.exports = {
-  getBlocks
+  getBlocks,
+  getBlock
 };

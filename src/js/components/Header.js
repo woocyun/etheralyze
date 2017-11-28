@@ -17,10 +17,10 @@ const Header = () => {
           </Typography>
           <nav className="desktop-nav">
             <Link to="/blocks">
-              <Button color="contrast">Blocks</Button>
+              <Button color="accent">Blocks</Button>
             </Link>
             <Link to="/transactions">
-              <Button color="contrast">Transactions</Button>
+              <Button color="accent">Transactions</Button>
             </Link>
             {/* <Link to="/account">
               <Button color="contrast">Account</Button>

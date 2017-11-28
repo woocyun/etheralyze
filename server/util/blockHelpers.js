@@ -27,7 +27,20 @@ const getBlocksInRange = ($lt, $gt) => {
     });
 };
 
+const getBlockByNumber = number => {
+  return Block
+    .findOne({ number })
+    .exec((err, block) => {
+      if (err) {
+        throw new Error(err);
+      } else {
+        return block;
+      }
+    });
+};
+
 module.exports = {
   getBlockCount,
-  getBlocksInRange
+  getBlocksInRange,
+  getBlockByNumber
 };

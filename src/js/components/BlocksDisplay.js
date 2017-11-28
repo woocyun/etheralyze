@@ -22,24 +22,24 @@ class BlocksDisplay extends Component {
           onSubmit={this.props.onAccountSearch}
         />
         <Grid container spacing={24}>
-            <Grid item xs={1}></Grid>
-            <Grid item xs={10}>
-              <Paper className="paper">
-                {/* <AccountOverview
-                  address={props.account.address}
-                  balance={props.account.balance}
-                  transactionCount={props.account.transactionCount}
-                />
-                <Divider /> */}
-                <BlockList
-                  blockPagination={this.props.blockPagination}
-                  blocks={this.props.blocks}
-                  onPageChange={this.props.fetchBlocks}
-                />
-              </Paper>
-            </Grid>
-            <Grid item xs={1}></Grid>
+          <Grid item xs={1}></Grid>
+          <Grid item xs={10}>
+            <Paper className="paper">
+              {/* <AccountOverview
+                address={props.account.address}
+                balance={props.account.balance}
+                transactionCount={props.account.transactionCount}
+              />
+              <Divider /> */}
+              <BlockList
+                blockPagination={this.props.blockPagination}
+                blocks={this.props.blocks}
+                onPageChange={this.props.fetchBlocks}
+              />
+            </Paper>
           </Grid>
+          <Grid item xs={1}></Grid>
+        </Grid>
       </div>
     );
   }
