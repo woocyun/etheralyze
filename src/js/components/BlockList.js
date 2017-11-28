@@ -13,6 +13,9 @@ import Table, {
   TableSortLabel,
 } from 'material-ui/Table';
 import PageNavigation from './PageNavigation';
+import {
+  Link
+} from 'react-router-dom';
 
 const BlockList = props => {
   const {
@@ -47,7 +50,11 @@ const BlockList = props => {
         {
           blocks && blocks.map((block) => (
             <TableRow key={block.number}>
-              <TableCell className="limit-80">{block.number}</TableCell>
+              <TableCell className="limit-80">
+                <Link to={`/block/${ block.number }`}>
+                  <Button color="primary">{block.number}</Button>
+                </Link>
+              </TableCell>
               <TableCell>{getDisplayDate(block.timestamp)}</TableCell>
               <TableCell>{block.transactions.length}</TableCell>
               <TableCell className="limit-80">{block.uncles.length}</TableCell>
@@ -71,7 +78,7 @@ const BlockList = props => {
   );
 
   function getDisplayDate(timestamp) {
-    return moment(timestamp * 1000).format('MM/DD/YY kk:mm');
+    return moment(timestamp * 1000).format('MM/DD/YY kk:mm:ss');
   }
 };
 

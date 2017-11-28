@@ -3,20 +3,20 @@ import { connect } from 'react-redux';
 import { fetchTransactions } from '../actions/TransactionActions';
 import TransactionsDisplay from '../components/TransactionsDisplay';
 
-const mapStateToAccountProps = (state) => ({
+const mapStateToTransactionsDisplayProps = (state) => ({
   transactions: state.transactions,
   transactionPagination: state.transactionPagination
 });
 
-const mapDispatchToAccountProps = dispatch => ({
+const mapDispatchToTransactionsDisplayProps = dispatch => ({
   fetchTransactions: (page, qty) => {
     dispatch(fetchTransactions(page, qty));
   }
 });
 
 const TransactionsDisplayContainer = connect(
-  mapStateToAccountProps,
-  mapDispatchToAccountProps
+  mapStateToTransactionsDisplayProps,
+  mapDispatchToTransactionsDisplayProps
 )(TransactionsDisplay);
 
 export default TransactionsDisplayContainer;

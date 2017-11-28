@@ -7,6 +7,12 @@ a {
   text-decoration: none;
 }
 
+table {
+  th, td {
+    text-align: center !important;
+  }
+}
+
 .limit-200 {
   max-width: 200px;
   overflow: hidden;

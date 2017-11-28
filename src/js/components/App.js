@@ -10,6 +10,7 @@ import red from 'material-ui/colors/red';
 import Header from './Header';
 import AccountContainer from '../containers/AccountContainer';
 import BlocksDisplayContainer from '../containers/BlocksDisplayContainer';
+import BlockDisplayContainer from '../containers/BlockDisplayContainer';
 import TransactionsDisplayContainer from '../containers/TransactionsDisplayContainer';
 
 const theme = createMuiTheme({
@@ -27,6 +28,7 @@ const App = (props) => {
         <Header />
         <Route path="/account" component={AccountContainer} />
         <Route path="/blocks" component={BlocksDisplayContainer} />
+        <Route path="/block/:number" component={BlockDisplayContainer} />
         <Route path="/transactions" component={TransactionsDisplayContainer} />
       </div>
     </MuiThemeProvider>
