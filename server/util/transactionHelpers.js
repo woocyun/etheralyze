@@ -1,7 +1,6 @@
 const Transaction = require('../models/transaction.model');
-
-const QTY_LIMIT = 20;
-const TRANSACTION_LIMIT = 19999;
+const PAGE_LIMIT = 1000;
+const REQUEST_QTY = 20;
 
 const getTransactionCount = () => {
   return Transaction
@@ -12,15 +11,16 @@ const getTransactionCount = () => {
     });
 };
 
-const getMostRecentTransactions = (page = 1, qty = 20) => {
-  if (qty > QTY_LIMIT) throw new Error('Exceeded QUANTITY_LIMIT');
-  if (qty * page > TRANSACTION_LIMIT + 1) throw new Error('Exceeded TRANSACTION_LIMIT.');
+const getMostRecentTransactions = (page) => {
+  if (isNaN(page)) throw new Error('Page parameter must be a number.');
+  if (page <= 0) throw new Error('Page cannot be less than 1.');
+  if (page > PAGE_LIMIT) throw new Error('Page exceeds PAGE_LIMIT.');
 
   return Transaction
     .find({})
     .sort([['blockNumber', -1], ['transactionIndex', -1]])
-    .skip((page - 1) * qty)
-    .limit(qty < TRANSACTION_LIMIT ? qty : TRANSACTION_LIMIT)
+    .skip((page - 1) * REQUEST_QTY)
+    .limit(REQUEST_QTY)
     .exec((err, transactions) => {
       if (err) {
         throw new Error(err);
@@ -33,5 +33,6 @@ const getMostRecentTransactions = (page = 1, qty = 20) => {
 module.exports = {
   getTransactionCount,
   getMostRecentTransactions,
-  TRANSACTION_LIMIT
+  PAGE_LIMIT,
+  REQUEST_QTY
 };

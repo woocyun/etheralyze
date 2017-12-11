@@ -5,12 +5,12 @@ export const FETCH_TRANSACTIONS_RESOLVED = 'FETCH_TRANSACTIONS_RESOLVED';
 export const FETCH_TRANSACTIONS_SUCCESS = 'FETCH_TRANSACTIONS_SUCCESS';
 export const FETCH_TRANSACTIONS_ERROR = 'FETCH_TRANSACTIONS_ERROR';
 
-export const fetchTransactions = (page = 1, qty = 10) => {
+export const fetchTransactions = (page = 1) => {
   return (dispatch) => {
     fetchTransactionsRequested(dispatch);
 
     return axios
-      .get(`/api/transactions?page=${ page }&qty=${ qty }`)
+      .get(`/api/transactions?page=${ page }`)
       .then(response => {
         fetchTransactionsResolved(dispatch);
         fetchTransactionsSuccess(dispatch, response.data);
