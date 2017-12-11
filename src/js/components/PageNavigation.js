@@ -27,6 +27,7 @@ class PageNavigation extends Component {
     this.handleLastPage = this.handleLastPage.bind(this);
     this.handleSpecifyPage = this.handleSpecifyPage.bind(this);
     this.disableSpecifyButton = this.disableSpecifyButton.bind(this);
+    this.getTotalTransactionsOrLimit = this.getTotalTransactionsOrLimit.bind(this);
   }
 
   handleFirstPage() {
@@ -39,10 +40,10 @@ class PageNavigation extends Component {
 
   handleLastPage() {
     this.setState({
-      page: parseInt(this.props.pagination.total / this.state.rowsPerPage) + 1
+      page: parseInt(this.getTotalTransactionsOrLimit() / this.state.rowsPerPage) + 1
     });
 
-    this.props.onPageChange(parseInt(this.props.pagination.total / this.state.rowsPerPage) + 1, this.state.rowsPerPage);
+    this.props.onPageChange(parseInt(this.getTotalTransactionsOrLimit() / this.state.rowsPerPage) + 1, this.state.rowsPerPage);
   }
 
   handlePrevPage() {
@@ -82,8 +83,17 @@ class PageNavigation extends Component {
     if (!this.state.pageSpecified) return true;
     if (isNaN(pageSpecified)) return true;
     if (pageSpecified < 1) return true;
-    if (pageSpecified > parseInt(this.props.pagination.total / this.state.rowsPerPage) + 1) return true;
+    if (pageSpecified > parseInt(this.getTotalTransactionsOrLimit() / this.state.rowsPerPage) + 1) return true;
     return false;
+  }
+
+  getTotalTransactionsOrLimit() {
+    const {
+      limit,
+      total
+    } = this.props.pagination;
+
+    return limit < total ? limit : total;
   }
 
   render() {
@@ -113,16 +123,16 @@ class PageNavigation extends Component {
               <ChevronLeft />
             </IconButton>
             <span className="text">
-              Page {page} of {parseInt(pagination.total / rowsPerPage) + 1}
+              Page {page} of {parseInt(this.getTotalTransactionsOrLimit() / rowsPerPage) + 1}
             </span>
             <IconButton
-              disabled={page >= (parseInt(pagination.total / rowsPerPage) + 1)}
+              disabled={page >= (parseInt(this.getTotalTransactionsOrLimit() / rowsPerPage) + 1)}
               onClick={this.handleNextPage}
             >
               <ChevronRight />
             </IconButton>
             <IconButton
-              disabled={page >= (parseInt(pagination.total / rowsPerPage) + 1)}
+              disabled={page >= (parseInt(this.getTotalTransactionsOrLimit() / rowsPerPage) + 1)}
               onClick={this.handleLastPage}
             >
               <LastPage />

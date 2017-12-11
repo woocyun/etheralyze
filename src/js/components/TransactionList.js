@@ -28,7 +28,7 @@ const TransactionList = props => {
           className="block-list__header"
           type="subheading"
         >
-          Transactions {transactions.length && ` ${ transactions[transactions.length - 1].hash } - ${ transactions[0].hash }`}
+          Transactions
         </Typography>
       </Toolbar>
       <Table>
