@@ -6,12 +6,12 @@ export const FETCH_BLOCKS_SUCCESS = 'FETCH_BLOCKS_SUCCESS';
 export const FETCH_BLOCKS_ERROR = 'FETCH_BLOCKS_ERROR';
 export const FETCH_BLOCK_SUCCESS = 'FETCH_BLOCK_SUCCESS';
 
-export const fetchBlocks = (page = 1, qty = 10) => {
+export const fetchBlocks = (page = 1) => {
   return (dispatch) => {
     fetchBlocksRequested(dispatch);
 
     return axios
-      .get(`/api/blocks?page=${ page }&qty=${ qty }`)
+      .get(`/api/blocks?page=${ page }`)
       .then(response => {
         fetchBlocksResolved(dispatch);
         fetchBlocksSuccess(dispatch, response.data);

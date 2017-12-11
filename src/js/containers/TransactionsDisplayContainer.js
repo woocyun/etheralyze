@@ -9,8 +9,8 @@ const mapStateToTransactionsDisplayProps = (state) => ({
 });
 
 const mapDispatchToTransactionsDisplayProps = dispatch => ({
-  fetchTransactions: (page, qty) => {
-    dispatch(fetchTransactions(page, qty));
+  fetchTransactions: page => {
+    dispatch(fetchTransactions(page));
   }
 });
 

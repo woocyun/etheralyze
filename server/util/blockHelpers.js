@@ -1,6 +1,6 @@
 const Block = require('../models/block.model');
 
-const BLOCK_LIMIT = 100;
+const REQUEST_QTY = 20;
 
 const getBlockCount = () => {
   return Block
@@ -11,13 +11,18 @@ const getBlockCount = () => {
     });
 };
 
-const getBlocksInRange = ($lt, $gt) => {
+const getBlocksInRange = (page, totalBlockCount) => {
+  if (isNaN(page)) throw new Error('Page parameter must be a number.');
+  if (page <= 0) throw new Error('Page cannot be less than 1.');
+
+  const $lt = totalBlockCount - ((page - 1) * REQUEST_QTY);
+  const $gt = totalBlockCount - ((page - 1) * REQUEST_QTY + REQUEST_QTY + 1);
+
   return Block
     .find({
       number: { $lt, $gt }
     })
     .sort({ number: -1 })
-    .limit(BLOCK_LIMIT)
     .exec((err, blocks) => {
       if (err) {
         throw new Error(err);
@@ -42,5 +47,6 @@ const getBlockByNumber = number => {
 module.exports = {
   getBlockCount,
   getBlocksInRange,
-  getBlockByNumber
+  getBlockByNumber,
+  REQUEST_QTY
 };

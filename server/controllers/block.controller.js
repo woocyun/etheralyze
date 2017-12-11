@@ -6,27 +6,26 @@ const web3 = new Web3(new Web3.providers.HttpProvider(process.env.INFURA));
 
 function getBlocks(req, res) {
   const page = Number(req.query.page);
-  const qty = Number(req.query.qty);
 
   blockHelpers
     .getBlockCount()
     .then(count => {
-      return blockHelpers.getBlocksInRange(
-        count - ((page - 1) * qty),
-        count - ((page - 1) * qty + qty + 1)
-      )
-        .then(blocks => ({count, blocks}));
+      return blockHelpers.getBlocksInRange(page, count)
+        .then(blocks => ({ count, blocks }));
     })
     .then(({ count, blocks }) => {
       res.send({
         pagination: {
-          total: count
+          total: count,
+          perPage: blockHelpers.REQUEST_QTY
         },
         blocks
       });
     })
     .catch(err => {
-      res.status(400).send(err);
+      res.status(400).send({
+        message: err.toString()
+      });
     });
 }
 

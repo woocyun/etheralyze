@@ -9,8 +9,8 @@ const mapStateToBlocksDisplayProps = (state) => ({
 });
 
 const mapDispatchToBlocksDisplayProps = dispatch => ({
-  fetchBlocks: (page, qty) => {
-    dispatch(fetchBlocks(page, qty));
+  fetchBlocks: page => {
+    dispatch(fetchBlocks(page));
   }
 });
 
