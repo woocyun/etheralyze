@@ -1,10 +1,39 @@
 .header {
+  position: relative;
   .title {
     color: #fff;
-    margin-left: 24px;
+    margin-left: 18px;
   }
   .desktop-nav {
     flex: 1;
     text-align: right;
+  }
+  .mobile-nav {
+    display: none;
+    position: absolute;
+    right: 10px;
+    button {
+      color: #fff;
+    }
+  }
+  @include lt-sm {
+    .desktop-nav {
+      display: none;
+    }
+    .mobile-nav {
+      display: inline-block;
+    }
+  }
+}
+
+#mobile-nav__dropdownitem {
+  padding: 0;
+  height: 36px;
+  &:hover, &:focus {
+    background-color: #fff;
+  }
+  a {
+    padding: 12px 16px;
+    width: 100%;
   }
 }
