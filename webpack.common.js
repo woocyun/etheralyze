@@ -10,10 +10,6 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
     publicPath: '/'
   },
-  devServer: {
-    historyApiFallback: true
-  },
-  devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [
       {
