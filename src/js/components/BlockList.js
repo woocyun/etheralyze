@@ -56,7 +56,11 @@ const BlockList = props => {
                 </Link>
               </TableCell>
               <TableCell>{getDisplayDate(block.timestamp)}</TableCell>
-              <TableCell>{block.transactions.length}</TableCell>
+              <TableCell>
+                <Link to={`/transactions?block=${block.number}`}>
+                  <Button color="primary">{block.transactions.length}</Button>
+                </Link>
+              </TableCell>
               <TableCell className="limit-80">{block.uncles.length}</TableCell>
               <TableCell className="limit-80">{block.miner}</TableCell>
               <TableCell className="limit-80">{`${block.gasUsed} (${(block.gasUsed / block.gasLimit * 100).toFixed(2)}%)`}</TableCell>

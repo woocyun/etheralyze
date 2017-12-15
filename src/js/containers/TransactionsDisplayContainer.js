@@ -17,6 +17,7 @@ const mapDispatchToTransactionsDisplayProps = dispatch => ({
   changePage: page => {
     const queryParams = Object.assign({}, queryString.parse(location.search), { page });
     history.push(buildPath('/transactions', queryParams));
+    dispatch(fetchTransactions(queryString.parse(location.search)));
   }
 });
 
