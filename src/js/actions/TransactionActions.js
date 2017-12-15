@@ -1,4 +1,5 @@
 import axios from 'axios';
+import buildPath from '../util/url';
 
 export const FETCH_TRANSACTIONS_REQUESTED = 'FETCH_TRANSACTIONS_REQUESTED';
 export const FETCH_TRANSACTIONS_RESOLVED = 'FETCH_TRANSACTIONS_RESOLVED';
@@ -9,18 +10,8 @@ export const fetchTransactions = queryParams => {
   return (dispatch) => {
     fetchTransactionsRequested(dispatch);
 
-    const fetchUrl = Object.keys(queryParams)
-      .map(key => ({ key, val: queryParams[key] }))
-      .reduce((prev, curr, idx) => {
-        if (idx === 0) {
-          return prev + `?${ curr.key }=${ curr.val }`;
-        } else {
-          return prev + `&${ curr.key }=${ curr.val }`;
-        }
-      }, '/api/transactions');
-
     return axios
-      .get(fetchUrl)
+      .get(buildPath('/api/transactions', queryParams))
       .then(response => {
         fetchTransactionsResolved(dispatch);
         fetchTransactionsSuccess(dispatch, response.data);
