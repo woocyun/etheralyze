@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import queryString from 'query-string';
 import history from '../util/history';
 import { fetchTransactions } from '../actions/TransactionActions';
 import TransactionsDisplay from '../components/TransactionsDisplay';
@@ -9,8 +10,10 @@ const mapStateToTransactionsDisplayProps = (state) => ({
 });
 
 const mapDispatchToTransactionsDisplayProps = dispatch => ({
-  fetchTransactions: page => {
-    dispatch(fetchTransactions(page));
+  fetchTransactions: () => {
+    dispatch(fetchTransactions(
+      queryString.parse(location.search)
+    ));
   },
   changePage: page => {
     history.push(`/transactions&page=${ page }`);

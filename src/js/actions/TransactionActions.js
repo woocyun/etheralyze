@@ -5,12 +5,22 @@ export const FETCH_TRANSACTIONS_RESOLVED = 'FETCH_TRANSACTIONS_RESOLVED';
 export const FETCH_TRANSACTIONS_SUCCESS = 'FETCH_TRANSACTIONS_SUCCESS';
 export const FETCH_TRANSACTIONS_ERROR = 'FETCH_TRANSACTIONS_ERROR';
 
-export const fetchTransactions = (page = 1) => {
+export const fetchTransactions = queryParams => {
   return (dispatch) => {
     fetchTransactionsRequested(dispatch);
 
+    const fetchUrl = Object.keys(queryParams)
+      .map(key => ({ key, val: queryParams[key] }))
+      .reduce((prev, curr, idx) => {
+        if (idx === 0) {
+          return prev + `?${ curr.key }=${ curr.val }`;
+        } else {
+          return prev + `&${ curr.key }=${ curr.val }`;
+        }
+      }, '/api/transactions');
+
     return axios
-      .get(`/api/transactions?page=${ page }`)
+      .get(fetchUrl)
       .then(response => {
         fetchTransactionsResolved(dispatch);
         fetchTransactionsSuccess(dispatch, response.data);
