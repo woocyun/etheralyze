@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Web3 from 'web3';
 import moment from 'moment';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
@@ -13,6 +14,8 @@ import Table, {
   TableSortLabel,
 } from 'material-ui/Table';
 import PageNavigation from './PageNavigation';
+
+const web3 = new Web3();
 
 const TransactionList = props => {
   const {
@@ -49,7 +52,7 @@ const TransactionList = props => {
               <TableCell>{transaction.blockNumber}</TableCell>
               <TableCell className="limit-80">{transaction.from}</TableCell>
               <TableCell className="limit-80">{transaction.to}</TableCell>
-              <TableCell>{transaction.value}</TableCell>
+              <TableCell>{web3.fromWei(transaction.value, 'ether')} Ether</TableCell>
             </TableRow>
           ))
         }
