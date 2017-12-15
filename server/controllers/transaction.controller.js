@@ -2,12 +2,10 @@ const Transaction = require('../models/transaction.model');
 const transactionHelpers = require('../util/transactionHelpers');
 
 function getTransactions(req, res) {
-  const page = Number(req.query.page);
-
   transactionHelpers
-    .getTransactionCount(page)
+    .getTransactionCount()
     .then(count => {
-      return transactionHelpers.getMostRecentTransactions(page)
+      return transactionHelpers.getMostRecentTransactions(req.query)
         .then(transactions => ({ count, transactions }));
     })
     .then(({ count, transactions }) => {

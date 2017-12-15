@@ -11,13 +11,30 @@ const getTransactionCount = () => {
     });
 };
 
-const getMostRecentTransactions = (page) => {
+const getMostRecentTransactions = queryParams => {
+  let {
+    page,
+    block: blockNumber
+  } = queryParams;
+
+  if (page == null) page = 1;
+  page = Number(page);
+
   if (isNaN(page)) throw new Error('Page parameter must be a number.');
   if (page <= 0) throw new Error('Page cannot be less than 1.');
   if (page > PAGE_LIMIT) throw new Error('Page exceeds PAGE_LIMIT.');
 
+  const mongoQuery = {};
+
+  if (blockNumber != null) {
+    if (blockNumber === '') throw new Error('Block parameter must be a number.'); // passing empty string for blockNumber results in 0, catch here
+    blockNumber = Number(blockNumber);
+    if (isNaN(blockNumber)) throw new Error('Block parameter must be a number.');
+    mongoQuery.blockNumber = blockNumber;
+  }
+
   return Transaction
-    .find({})
+    .find(mongoQuery)
     .sort([['blockNumber', -1], ['transactionIndex', -1]])
     .skip((page - 1) * REQUEST_QTY)
     .limit(REQUEST_QTY)
