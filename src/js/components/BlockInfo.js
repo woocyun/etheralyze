@@ -11,6 +11,10 @@ import Table, {
   TableRow,
   TableSortLabel,
 } from 'material-ui/Table';
+import Button from 'material-ui/Button';
+import {
+  Link
+} from 'react-router-dom';
 
 const BlockInfo = props => {
   const {
@@ -38,7 +42,18 @@ const BlockInfo = props => {
           </TableRow>
           <TableRow>
             <TableCell>Transactions</TableCell>
-            <TableCell>{block.transactions && block.transactions.length}</TableCell>
+            <TableCell>
+              {
+                block.transactions && 
+                (
+                  block.transactions.length > 0 ?
+                  <Link to={`/transactions?block=${ block.number }`}>
+                    <span className="link">{block.transactions && block.transactions.length}</span>
+                  </Link> :
+                  block.transactions.length
+                )
+              }
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Hash</TableCell>

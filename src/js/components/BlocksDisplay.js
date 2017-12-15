@@ -34,7 +34,7 @@ class BlocksDisplay extends Component {
               <BlockList
                 blockPagination={this.props.blockPagination}
                 blocks={this.props.blocks}
-                onPageChange={this.props.fetchBlocks}
+                changePage={this.props.changePage}
               />
             </Paper>
           </Grid>

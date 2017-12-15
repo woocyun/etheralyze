@@ -1,4 +1,5 @@
 import axios from 'axios';
+import buildPath from '../util/url';
 
 export const FETCH_BLOCKS_REQUESTED = 'FETCH_BLOCKS_REQUESTED';
 export const FETCH_BLOCKS_RESOLVED = 'FETCH_BLOCKS_RESOLVED';
@@ -6,12 +7,12 @@ export const FETCH_BLOCKS_SUCCESS = 'FETCH_BLOCKS_SUCCESS';
 export const FETCH_BLOCKS_ERROR = 'FETCH_BLOCKS_ERROR';
 export const FETCH_BLOCK_SUCCESS = 'FETCH_BLOCK_SUCCESS';
 
-export const fetchBlocks = (page = 1) => {
+export const fetchBlocks = queryParams => {
   return (dispatch) => {
     fetchBlocksRequested(dispatch);
 
     return axios
-      .get(`/api/blocks?page=${ page }`)
+      .get(buildPath('/api/blocks', queryParams))
       .then(response => {
         fetchBlocksResolved(dispatch);
         fetchBlocksSuccess(dispatch, response.data);

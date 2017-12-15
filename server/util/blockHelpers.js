@@ -11,17 +11,9 @@ const getBlockCount = () => {
     });
 };
 
-const getBlocksInRange = (page, totalBlockCount) => {
-  if (isNaN(page)) throw new Error('Page parameter must be a number.');
-  if (page <= 0) throw new Error('Page cannot be less than 1.');
-
-  const $lt = totalBlockCount - ((page - 1) * REQUEST_QTY);
-  const $gt = totalBlockCount - ((page - 1) * REQUEST_QTY + REQUEST_QTY + 1);
-
+const getBlocksInRange = (mongoQuery) => {
   return Block
-    .find({
-      number: { $lt, $gt }
-    })
+    .find(mongoQuery)
     .sort({ number: -1 })
     .exec((err, blocks) => {
       if (err) {

@@ -27,7 +27,7 @@ class TransactionsDisplay extends Component {
                 <TransactionList
                   transactionPagination={this.props.transactionPagination}
                   transactions={this.props.transactions}
-                  onPageChange={this.props.changePage}
+                  changePage={this.props.changePage}
                 />
               </Paper>
             </Grid>

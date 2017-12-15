@@ -21,7 +21,7 @@ const BlockList = props => {
   const {
     blockPagination,
     blocks,
-    onPageChange
+    changePage
   } = props;
 
   return (
@@ -73,7 +73,7 @@ const BlockList = props => {
           <TableRow>
             <PageNavigation
               pagination={blockPagination}
-              onPageChange={onPageChange}
+              onPageChange={changePage}
             />
           </TableRow>
         </TableFooter>

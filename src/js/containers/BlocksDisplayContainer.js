@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
-
+import queryString from 'query-string';
+import history from '../util/history';
+import buildPath from '../util/url';
 import { fetchBlocks } from '../actions/BlockActions';
 import BlocksDisplay from '../components/BlocksDisplay';
 
@@ -9,8 +11,13 @@ const mapStateToBlocksDisplayProps = (state) => ({
 });
 
 const mapDispatchToBlocksDisplayProps = dispatch => ({
-  fetchBlocks: page => {
-    dispatch(fetchBlocks(page));
+  fetchBlocks: () => {
+    dispatch(fetchBlocks(queryString.parse(location.search)));
+  },
+  changePage: page => {
+    const queryParams = Object.assign({}, queryString.parse(location.search), { page });
+    history.push(buildPath('/blocks', queryParams));
+    dispatch(fetchBlocks(queryString.parse(location.search)));
   }
 });
 

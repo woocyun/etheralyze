@@ -3,7 +3,6 @@ const REQUEST_QTY = 20;
 const PAGE_LIMIT = 1000;
 
 const getTransactionCount = mongoQuery => {
-  console.log(mongoQuery)
   return Transaction
     .count(mongoQuery)
     .exec((err, count) => {

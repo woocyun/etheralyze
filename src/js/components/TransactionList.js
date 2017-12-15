@@ -21,7 +21,7 @@ const TransactionList = props => {
   const {
     transactionPagination,
     transactions,
-    onPageChange
+    changePage
   } = props;
 
   return (
@@ -61,7 +61,7 @@ const TransactionList = props => {
           <TableRow>
             <PageNavigation
               pagination={transactionPagination}
-              onPageChange={onPageChange}
+              onPageChange={changePage}
             />
           </TableRow>
         </TableFooter>

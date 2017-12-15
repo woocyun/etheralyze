@@ -5,12 +5,25 @@ const blockHelpers = require('../util/blockHelpers');
 const web3 = new Web3(new Web3.providers.HttpProvider(process.env.INFURA));
 
 function getBlocks(req, res) {
-  const page = Number(req.query.page);
+  let {
+    page
+  } = req.query;
+  
+  if (page == null) page = 1;
+  page = Number(page);
+
+  if (isNaN(page)) handleError(new Error('Page parameter must be a number.'), res);
+  if (page <= 0) handleError(new Error('Page cannot be less than 1.', res));
 
   blockHelpers
     .getBlockCount()
     .then(count => {
-      return blockHelpers.getBlocksInRange(page, count)
+      return blockHelpers.getBlocksInRange({
+        number: {
+          $lt: count - ((page - 1) * blockHelpers.REQUEST_QTY),
+          $gt: count - ((page - 1) * blockHelpers.REQUEST_QTY + blockHelpers.REQUEST_QTY + 1)
+        }
+      })
         .then(blocks => ({ count, blocks }));
     })
     .then(({ count, blocks }) => {
@@ -40,6 +53,12 @@ function getBlock(req, res) {
     .catch(err => {
       res.status(400).send(err);
     });
+}
+
+function handleError(err, res) {
+  res.status(400).send({
+    message: err.toString()
+  });
 }
 
 module.exports = {
