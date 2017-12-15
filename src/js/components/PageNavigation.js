@@ -78,7 +78,6 @@ class PageNavigation extends Component {
 
   disableSpecifyButton() {
     const pageSpecified = Number(this.state.pageSpecified);
-    console.log(pageSpecified, this.props.pagination.total, this.props.pagination.perPage)
     if (!this.state.pageSpecified) return true;
     if (isNaN(pageSpecified)) return true;
     if (pageSpecified < 1) return true;
