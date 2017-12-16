@@ -8,6 +8,7 @@ import cyan from 'material-ui/colors/cyan';
 import red from 'material-ui/colors/red';
 
 import Header from './Header';
+import OverviewContainer from '../containers/OverviewContainer';
 import AccountContainer from '../containers/AccountContainer';
 import BlocksDisplayContainer from '../containers/BlocksDisplayContainer';
 import BlockDisplayContainer from '../containers/BlockDisplayContainer';
@@ -26,6 +27,7 @@ const App = (props) => {
     <MuiThemeProvider theme={theme}>
       <div id="etheralyze">
         <Header />
+        <Route exact path="/" component={OverviewContainer} />
         <Route path="/account" component={AccountContainer} />
         <Route path="/blocks" component={BlocksDisplayContainer} />
         <Route path="/block/:number" component={BlockDisplayContainer} />
