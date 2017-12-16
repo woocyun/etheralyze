@@ -57,9 +57,13 @@ const BlockList = props => {
               </TableCell>
               <TableCell>{getDisplayDate(block.timestamp)}</TableCell>
               <TableCell>
-                <Link to={`/transactions?block=${block.number}`}>
-                  <Button color="primary">{block.transactions.length}</Button>
-                </Link>
+                {
+                  block.transactions.length ?
+                  <Link to={`/transactions?block=${block.number}`}>
+                    <Button color="primary">{block.transactions.length}</Button>
+                  </Link> :
+                  block.transactions.length
+                }
               </TableCell>
               <TableCell className="limit-80">{block.uncles.length}</TableCell>
               <TableCell className="limit-80">
