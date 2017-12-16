@@ -40,10 +40,23 @@ const getLatestTransactions = () => {
     });
 };
 
+const getTransactionByHash = hash => {
+  return Transaction
+    .findOne({ hash })
+    .exec((err, transaction) => {
+      if (err) {
+        throw new Error(err);
+      } else {
+        return transaction;
+      }
+    });
+};
+
 module.exports = {
   getTransactionCount,
   getMostRecentTransactions,
   getLatestTransactions,
+  getTransactionByHash,
   REQUEST_QTY,
   PAGE_LIMIT
 };

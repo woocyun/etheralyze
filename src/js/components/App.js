@@ -13,6 +13,7 @@ import AccountContainer from '../containers/AccountContainer';
 import BlocksDisplayContainer from '../containers/BlocksDisplayContainer';
 import BlockDisplayContainer from '../containers/BlockDisplayContainer';
 import TransactionsDisplayContainer from '../containers/TransactionsDisplayContainer';
+import TransactionDisplayContainer from '../containers/TransactionDisplayContainer';
 
 const theme = createMuiTheme({
   palette: {
@@ -32,6 +33,7 @@ const App = (props) => {
         <Route path="/blocks" component={BlocksDisplayContainer} />
         <Route path="/block/:number" component={BlockDisplayContainer} />
         <Route path="/transactions" component={TransactionsDisplayContainer} />
+        <Route path="/transaction/:hash" component={TransactionDisplayContainer} />
       </div>
     </MuiThemeProvider>
   );

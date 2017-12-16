@@ -43,6 +43,19 @@ function getTransactions(req, res) {
     });
 }
 
+function getTransaction(req, res) {
+  const transactionHash = req.query.hash;
+
+  transactionHelpers
+    .getTransactionByHash(transactionHash)
+    .then(transaction => {
+      res.send(transaction);
+    })
+    .catch(err => {
+      handleError(err, res);
+    });
+}
+
 function handleError(err, res) {
   res.status(400).send({
     message: err.toString()
@@ -50,5 +63,6 @@ function handleError(err, res) {
 }
 
 module.exports = {
-  getTransactions
+  getTransactions,
+  getTransaction
 };
