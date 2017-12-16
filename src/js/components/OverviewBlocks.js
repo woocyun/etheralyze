@@ -23,10 +23,12 @@ const OverviewBlocks = props => {
       >
         {
           blocks.map(block => (
-            <Link to={`/block/${ block.number }`}>
+            <Link
+              key={block.hash}
+              to={`/block/${ block.number }`}
+            >
               <ListItem
                 button
-                key={block.hash}
               >
                 <ListItemText
                   primary={`Block ${ block.number }`}

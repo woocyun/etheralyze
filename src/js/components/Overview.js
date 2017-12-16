@@ -49,7 +49,7 @@ class Overview extends Component {
             </Paper>
           </Grid>
           <Hidden smDown>
-            <Grid md={3}></Grid>
+            <Grid item md={3}></Grid>
           </Hidden>
         </Grid>
       </div>

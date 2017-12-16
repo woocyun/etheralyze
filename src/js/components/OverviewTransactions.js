@@ -26,10 +26,12 @@ const OverviewTransactions = props => {
       >
         {
           transactions.map(transaction => (
-            <Link to={`/transaction/${ transaction.hash }`}>
+            <Link
+              key={transaction.hash}
+              to={`/transaction/${ transaction.hash }`}
+            >
               <ListItem
                 button
-                key={transaction.hash}
               >
                 <ListItemText
                   primary={`Transaction ${ transaction.hash.slice(0, 20) }...`}
