@@ -26,9 +26,24 @@ const getMostRecentTransactions = (page, mongoQuery) => {
     });
 };
 
+const getLatestTransactions = () => {
+  return Transaction
+    .find()
+    .sort([['blockNumber', -1], ['transactionIndex', -1]])
+    .limit(5)
+    .exec((err, transactions) => {
+      if (err) {
+        throw new Error(err);
+      } else {
+        return transactions;
+      }
+    });
+};
+
 module.exports = {
   getTransactionCount,
   getMostRecentTransactions,
+  getLatestTransactions,
   REQUEST_QTY,
   PAGE_LIMIT
 };

@@ -36,9 +36,24 @@ const getBlockByNumber = number => {
     });
 };
 
+const getLatestBlocks = () => {
+  return Block
+    .find()
+    .sort({ number: -1 })
+    .limit(5)
+    .exec((err, blocks) => {
+      if (err) {
+        throw new Error(err);
+      } else {
+        return blocks;
+      }
+    });
+}
+
 module.exports = {
   getBlockCount,
   getBlocksInRange,
   getBlockByNumber,
+  getLatestBlocks,
   REQUEST_QTY
 };
