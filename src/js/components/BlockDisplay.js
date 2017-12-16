@@ -22,6 +22,7 @@ class BlockDisplay extends Component {
               <Paper className="paper">
                 <BlockInfo
                   block={this.props.block}
+                  blockNumber={this.props.blockNumber}
                 />
               </Paper>
             </Grid>

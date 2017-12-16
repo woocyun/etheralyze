@@ -19,7 +19,8 @@ class BlocksDisplay extends Component {
       <div className="blocks-display">
         <TextFieldSubmit
           label="Block Number"
-          onSubmit={this.props.onAccountSearch}
+          onSubmit={this.props.onBlockSearch}
+          type="number"
         />
         <Grid container spacing={24}>
           <Grid item xs={1}></Grid>

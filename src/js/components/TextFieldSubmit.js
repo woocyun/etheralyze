@@ -32,6 +32,7 @@ class TextFieldSubmit extends Component {
           <Grid item xs={1} sm={3}></Grid>
           <Grid item xs={10} sm={6}>
             <TextField
+              type={this.props.type}
               label={this.props.label}
               value={this.state.address}
               onChange={this.handleChange}

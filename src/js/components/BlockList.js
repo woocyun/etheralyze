@@ -34,7 +34,7 @@ const BlockList = props => {
           Blocks {blocks.length && ` ${ blocks[blocks.length - 1].number } - ${ blocks[0].number }`}
         </Typography>
       </Toolbar>
-      <Table>
+      <Table className="no-uppercase">
         <TableHead>
           <TableRow>
             <TableCell>Number</TableCell>
@@ -62,7 +62,11 @@ const BlockList = props => {
                 </Link>
               </TableCell>
               <TableCell className="limit-80">{block.uncles.length}</TableCell>
-              <TableCell className="limit-80">{block.miner}</TableCell>
+              <TableCell className="limit-80">
+                <Link to={`/account/${block.miner}`}>
+                  <Button color="primary">{block.miner}</Button>
+                </Link>
+              </TableCell>
               <TableCell className="limit-80">{`${block.gasUsed} (${(block.gasUsed / block.gasLimit * 100).toFixed(2)}%)`}</TableCell>
               <TableCell>{block.gasLimit}</TableCell>
             </TableRow>
