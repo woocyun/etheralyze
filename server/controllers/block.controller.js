@@ -36,9 +36,7 @@ function getBlocks(req, res) {
       });
     })
     .catch(err => {
-      res.status(400).send({
-        message: err.toString()
-      });
+      handleError(err, res);
     });
 }
 
@@ -51,7 +49,7 @@ function getBlock(req, res) {
       res.send(block);
     })
     .catch(err => {
-      res.status(400).send(err);
+      handleError(err, res);
     });
 }
 

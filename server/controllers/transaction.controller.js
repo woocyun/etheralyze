@@ -39,7 +39,7 @@ function getTransactions(req, res) {
       });
     })
     .catch(err => {
-      handleError(err);
+      handleError(err, res);
     });
 }
 
