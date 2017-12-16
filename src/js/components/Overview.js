@@ -4,6 +4,7 @@ import Grid from 'material-ui/Grid';
 import OverviewSummary from './OverviewSummary';
 import OverviewBlocks from './OverviewBlocks';
 import OverviewTransactions from './OverviewTransactions';
+import Hidden from 'material-ui/Hidden';
 
 class Overview extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class Overview extends Component {
   render() {
     return (
       <div className="overview">
-        <Grid container>
+        <Grid container style={{ marginBottom: 13 }}>
           <Grid item xs={1} md={3}></Grid>
           <Grid item xs={10} md={6}>
             <Paper className="paper">
@@ -28,23 +29,28 @@ class Overview extends Component {
           </Grid>
           <Grid item xs={1} md={3}></Grid>
         </Grid>
-        <Grid container spacing={24}>
-          <Grid item md={3}></Grid>
-          <Grid item md={3}>
+        <Grid container spacing={24} justify="center">
+          <Grid item xs={1} md={3}></Grid>
+          <Grid item xs={10} md={3}>
             <Paper className="paper">
               <OverviewBlocks
                 blocks={this.props.overviewData.latestBlocks}
               />
             </Paper>
           </Grid>
-          <Grid item md={3}>
+          <Hidden smUp>
+            <Grid item xs={1}></Grid>
+          </Hidden>
+          <Grid item xs={10} md={3}>
             <Paper className="paper">
               <OverviewTransactions
                 transactions={this.props.overviewData.latestTransactions}
               />
             </Paper>
           </Grid>
-          <Grid item md={3}></Grid>
+          <Hidden smDown>
+            <Grid md={3}></Grid>
+          </Hidden>
         </Grid>
       </div>
     );

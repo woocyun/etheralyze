@@ -6,6 +6,7 @@ import List, {
   ListItemSecondaryAction,
   ListItemText,
 } from 'material-ui/List';
+import ListSubheader from 'material-ui/List/ListSubheader';
 import {
   Link
 } from 'react-router-dom';
@@ -17,7 +18,9 @@ const OverviewBlocks = props => {
 
   return (
     <div>
-      <List>
+      <List
+        subheader={<ListSubheader>Recent Blocks</ListSubheader>}
+      >
         {
           blocks.map(block => (
             <Link to={`/block/${ block.number }`}>

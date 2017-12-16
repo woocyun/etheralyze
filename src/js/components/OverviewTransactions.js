@@ -7,6 +7,7 @@ import List, {
   ListItemSecondaryAction,
   ListItemText,
 } from 'material-ui/List';
+import ListSubheader from 'material-ui/List/ListSubheader';
 import {
   Link
 } from 'react-router-dom';
@@ -20,7 +21,9 @@ const OverviewTransactions = props => {
 
   return (
     <div>
-      <List>
+      <List
+        subheader={<ListSubheader>Recent Transactions</ListSubheader>}
+      >
         {
           transactions.map(transaction => (
             <Link to={`/transaction/${ transaction.hash }`}>
