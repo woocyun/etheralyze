@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
+import OverviewSummary from './OverviewSummary';
+import OverviewBlocks from './OverviewBlocks';
+import OverviewTransactions from './OverviewTransactions';
 
 class Overview extends Component {
   constructor(props) {
@@ -15,27 +18,33 @@ class Overview extends Component {
     return (
       <div className="overview">
         <Grid container>
-          <Grid item md={1}></Grid>
-          <Grid item md={10}>
+          <Grid item xs={1} md={3}></Grid>
+          <Grid item xs={10} md={6}>
             <Paper className="paper">
-              Overview!
+              <OverviewSummary
+                priceData={this.props.overviewData.priceData}
+              />
             </Paper>
           </Grid>
-          <Grid item md={1}></Grid>
+          <Grid item xs={1} md={3}></Grid>
         </Grid>
         <Grid container spacing={24}>
-          <Grid item md={1}></Grid>
-          <Grid item md={5}>
+          <Grid item md={3}></Grid>
+          <Grid item md={3}>
             <Paper className="paper">
-              Recent Blocks
+              <OverviewBlocks
+                blocks={this.props.overviewData.latestBlocks}
+              />
             </Paper>
           </Grid>
-          <Grid item md={5}>
+          <Grid item md={3}>
             <Paper className="paper">
-              Recent Transactions
+              <OverviewTransactions
+                transactions={this.props.overviewData.latestTransactions}
+              />
             </Paper>
           </Grid>
-          <Grid item md={1}></Grid>
+          <Grid item md={3}></Grid>
         </Grid>
       </div>
     );

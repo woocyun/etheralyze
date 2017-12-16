@@ -1,0 +1,41 @@
+import React from 'react';
+import List, {
+  ListItem,
+  ListItemAvatar,
+  ListItemIcon,
+  ListItemSecondaryAction,
+  ListItemText,
+} from 'material-ui/List';
+import {
+  Link
+} from 'react-router-dom';
+
+const OverviewBlocks = props => {
+  const {
+    blocks = []
+  } = props;
+
+  return (
+    <div>
+      <List>
+        {
+          blocks.map(block => (
+            <Link to={`/block/${ block.number }`}>
+              <ListItem
+                button
+                key={block.hash}
+              >
+                <ListItemText
+                  primary={`Block ${ block.number }`}
+                  secondary={`${ block.transactions.length } Transactions. Mined by ${ block.miner.slice(0, 20) }...`}
+                />
+              </ListItem>
+            </Link>
+          ))
+        }
+      </List>
+    </div>
+  );
+};
+
+export default OverviewBlocks;
