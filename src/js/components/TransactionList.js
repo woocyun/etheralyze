@@ -14,6 +14,9 @@ import Table, {
   TableSortLabel,
 } from 'material-ui/Table';
 import PageNavigation from './PageNavigation';
+import {
+  Link
+} from 'react-router-dom';
 
 const web3 = new Web3();
 
@@ -34,7 +37,7 @@ const TransactionList = props => {
           Transactions
         </Typography>
       </Toolbar>
-      <Table>
+      <Table className="no-uppercase">
         <TableHead>
           <TableRow>
             <TableCell className="limit-80">Hash</TableCell>
@@ -48,10 +51,22 @@ const TransactionList = props => {
         {
           transactions && transactions.map((transaction) => (
             <TableRow key={transaction.hash}>
-              <TableCell className="limit-80">{transaction.hash}</TableCell>
+              <TableCell className="limit-80">
+                <Link to={`/transaction/${ transaction.hash }`}>
+                  <Button color="primary">{transaction.hash}</Button>
+                </Link>
+              </TableCell>
               <TableCell>{transaction.blockNumber}</TableCell>
-              <TableCell className="limit-80">{transaction.from}</TableCell>
-              <TableCell className="limit-80">{transaction.to}</TableCell>
+              <TableCell className="limit-80">
+                <Link to={`/account/${ transaction.from }`}>
+                  <Button color="primary">{transaction.from}</Button>
+                </Link>
+              </TableCell>
+              <TableCell className="limit-80">
+                <Link to={`/account/${ transaction.to }`}>
+                  <Button color="primary">{transaction.to}</Button>
+                </Link>
+              </TableCell>
               <TableCell>{web3.fromWei(transaction.value, 'ether')} Ether</TableCell>
             </TableRow>
           ))

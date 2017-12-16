@@ -22,3 +22,7 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.no-uppercase * {
+  text-transform: none;
+}
