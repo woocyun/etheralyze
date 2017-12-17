@@ -5,7 +5,7 @@ import buildPath from '../util/url';
 import { fetchBlocks } from '../actions/BlockActions';
 import BlocksDisplay from '../components/BlocksDisplay';
 
-const mapStateToBlocksDisplayProps = (state, ownProps) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     blocks: state.blocks,
     blockPagination: state.blockPagination,
@@ -13,7 +13,7 @@ const mapStateToBlocksDisplayProps = (state, ownProps) => {
   }
 };
 
-const mapDispatchToBlocksDisplayProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   fetchBlocks: () => {
     dispatch(fetchBlocks(queryString.parse(location.search)));
   },
@@ -35,8 +35,8 @@ const mergeProps = (stateProps, dispatchProps) => {
 };
 
 const BlocksDisplayContainer = connect(
-  mapStateToBlocksDisplayProps,
-  mapDispatchToBlocksDisplayProps,
+  mapStateToProps,
+  mapDispatchToProps,
   mergeProps
 )(BlocksDisplay);
 

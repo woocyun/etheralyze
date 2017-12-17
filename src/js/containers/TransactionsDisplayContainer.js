@@ -5,12 +5,12 @@ import buildPath from '../util/url';
 import { fetchTransactions } from '../actions/TransactionActions';
 import TransactionsDisplay from '../components/TransactionsDisplay';
 
-const mapStateToTransactionsDisplayProps = (state) => ({
+const mapStateToProps = (state) => ({
   transactions: state.transactions,
   transactionPagination: state.transactionPagination
 });
 
-const mapDispatchToTransactionsDisplayProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   fetchTransactions: () => {
     dispatch(fetchTransactions(queryString.parse(location.search)));
   },
@@ -22,8 +22,8 @@ const mapDispatchToTransactionsDisplayProps = dispatch => ({
 });
 
 const TransactionsDisplayContainer = connect(
-  mapStateToTransactionsDisplayProps,
-  mapDispatchToTransactionsDisplayProps
+  mapStateToProps,
+  mapDispatchToProps
 )(TransactionsDisplay);
 
 export default TransactionsDisplayContainer;

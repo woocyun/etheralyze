@@ -2,18 +2,18 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import App from '../components/App';
 
-const mapStateToAppProps = (state) => ({
+const mapStateToProps = (state) => ({
 
 });
 
-const mapDispatchToAppProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
 
 });
 
 const AppContainer = withRouter(
   connect(
-    mapStateToAppProps,
-    mapDispatchToAppProps
+    mapStateToProps,
+    mapDispatchToProps
   )(App)
 );
 

@@ -2,12 +2,12 @@ import { connect } from 'react-redux';
 import { fetchBlock } from '../actions/BlockActions';
 import BlockDisplay from '../components/BlockDisplay';
 
-const mapStateToBlockDisplayProps = (state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => ({
   block: state.block,
   blockNumber: ownProps.match.params.number
 });
 
-const mapDispatchToBlockDisplayProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   dispatch
 });
 
@@ -20,8 +20,8 @@ const mergeProps = (stateProps, dispatchProps) => {
 };
 
 const BlockDisplayContainer = connect(
-  mapStateToBlockDisplayProps,
-  mapDispatchToBlockDisplayProps,
+  mapStateToProps,
+  mapDispatchToProps,
   mergeProps
 )(BlockDisplay);
 

@@ -3,19 +3,19 @@ import Overview from '../components/Overview';
 
 import { fetchOverviewData } from '../actions/OverviewActions';
 
-const mapStateToAppProps = (state) => ({
+const mapStateToProps = (state) => ({
   overviewData: state.overviewData
 });
 
-const mapDispatchToAppProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
   onMount: () => {
     dispatch(fetchOverviewData());
   }
 });
 
 const OverviewContainer = connect(
-  mapStateToAppProps,
-  mapDispatchToAppProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Overview);
 
 export default OverviewContainer;

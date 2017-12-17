@@ -31,7 +31,7 @@ const BlockInfo = props => {
             <Typography
               type="subheading"
             >
-              Block {block.number}
+              Block Info
             </Typography>
           </Toolbar>
           <Table>

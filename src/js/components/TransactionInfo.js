@@ -30,7 +30,7 @@ const TransactionInfo = props => {
         <Typography
           type="subheading"
         >
-          Transaction {transaction.hash}
+          Transaction Info
         </Typography>
       </Toolbar>
       <Table>
