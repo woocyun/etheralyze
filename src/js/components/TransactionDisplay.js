@@ -21,6 +21,7 @@ class TransactionDisplay extends Component {
               <Paper className="paper">
                 <TransactionInfo
                   transaction={this.props.transaction}
+                  transactionHash={this.props.transactionHash}
                 />
               </Paper>
             </Grid>

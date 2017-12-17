@@ -2,10 +2,12 @@ import { connect } from 'react-redux';
 import { fetchTransaction } from '../actions/TransactionActions';
 import TransactionDisplay from '../components/TransactionDisplay';
 
-const mapStateToProps = (state, ownProps) => ({
-  transaction: state.transaction,
-  transactionHash: ownProps.match.params.hash
-});
+const mapStateToProps = (state, ownProps) => {
+  return {
+    transaction: state.transaction,
+    transactionHash: ownProps.match.params.hash
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   dispatch
