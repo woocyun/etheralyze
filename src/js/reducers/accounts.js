@@ -1,14 +1,12 @@
 import {
-  FETCH_ACCOUNT
+  FETCH_ACCOUNT_SUCCESS
 } from '../actions/AccountActions';
 
-const initialState = null;
-
-export default function account(state = initialState, action) {
+export const account = (state = {}, action) => {
   switch (action.type) {
-    case FETCH_ACCOUNT:
+    case FETCH_ACCOUNT_SUCCESS:
       return action.payload;
     default:
       return state;
   }
-}
+};
