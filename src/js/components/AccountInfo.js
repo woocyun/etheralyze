@@ -1,21 +1,21 @@
 import React from 'react';
-
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
 import Divider from 'material-ui/Divider';
-
 import TextFieldSubmit from './TextFieldSubmit';
 import AccountOverview from './AccountOverview';
-import TransactionList from './TransactionList';
+import Notification from './Notification';
 
 const Account = (props) => {
+  const {
+    account,
+    accountHash
+  } = props;
+
   return (
-    <div className="account">
-      <TextFieldSubmit
-        onSubmit={props.onAccountSearch}
-      />
+    <div className="account-info">
       {
-        props.account ?
+        account ?
         <Grid container spacing={24}>
           <Grid item xs={1}></Grid>
           <Grid item xs={10}>
@@ -26,14 +26,14 @@ const Account = (props) => {
                 transactionCount={props.account.transactionCount}
               />
               <Divider />
-              <TransactionList
-                transactions={props.account.transactions}
-              />
             </Paper>
           </Grid>
           <Grid item xs={1}></Grid>
         </Grid> :
-        <div></div>
+        <Notification
+          color="red"
+          message={`Account ${ accountHash } does not exist.`}
+        />
       }
     </div>
   );
