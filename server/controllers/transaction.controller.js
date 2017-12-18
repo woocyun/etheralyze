@@ -4,7 +4,8 @@ const transactionHelpers = require('../util/transactionHelpers');
 function getTransactions(req, res) {
   let {
     page,
-    block: blockNumber
+    block: blockNumber,
+    account: accountHash
   } = req.query;
 
   if (page == null) page = 1;
@@ -21,6 +22,10 @@ function getTransactions(req, res) {
     blockNumber = Number(blockNumber);
     if (isNaN(blockNumber)) handleError(new Error('Block parameter must be a number.'), res);
     mongoQuery.blockNumber = blockNumber;
+  } else if (accountHash != null) {
+    Object.assign(mongoQuery, {
+      $or: [{ to: accountHash }, { from: accountHash }]
+    });
   }
 
   transactionHelpers
