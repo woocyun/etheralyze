@@ -41,6 +41,8 @@ function getBlocks(req, res) {
 function getBlock(req, res) {
   const blockNumber = Number(req.query.number);
 
+  if (isNaN(blockNumber)) handleError(new Error('Got NaN for block number.'));
+
   blockHelpers
     .getBlockByNumber(blockNumber)
     .then(block => {
