@@ -11,7 +11,7 @@ router.route('/blocks').get(BlockController.getBlocks);
 router.route('/block').get(BlockController.getBlock);
 router.route('/transactions').get(TransactionController.getTransactions);
 router.route('/transaction').get(TransactionController.getTransaction);
-router.route('/account/:id').get(AccountController.getAccount);
+router.route('/account').get(AccountController.getAccount);
 router.route('/accounts/:query').get(AccountController.searchAccounts);
 
 module.exports = router;

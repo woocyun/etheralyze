@@ -1,8 +1,6 @@
-const Web3 = require('web3');
 const async = require('async');
 const Block = require('../models/block.model');
 const blockHelpers = require('../util/blockHelpers');
-const web3 = new Web3(new Web3.providers.HttpProvider(process.env.INFURA));
 
 function getBlocks(req, res) {
   let {
