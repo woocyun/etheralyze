@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
 import AccountInfo from './AccountInfo';
+import Loading from './Loading';
 
 class AccountDisplay extends Component {
   constructor(props) {
@@ -15,7 +16,10 @@ class AccountDisplay extends Component {
   render() {
     return (
       <div className="account-display">
-        <Grid container spacing={24}>
+        {
+          this.props.accountLoading ?
+          <Loading /> :
+          <Grid container spacing={24}>
             <Grid item xs={1}></Grid>
             <Grid item xs={10}>
               <Paper className="paper">
@@ -28,6 +32,7 @@ class AccountDisplay extends Component {
             </Grid>
             <Grid item xs={1}></Grid>
           </Grid>
+        }
       </div>
     );
   }

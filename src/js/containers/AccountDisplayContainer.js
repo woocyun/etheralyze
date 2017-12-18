@@ -4,7 +4,8 @@ import AccountDisplay from '../components/AccountDisplay';
 
 const mapStateToProps = (state, ownProps) => ({
   account: state.account,
-  accountHash: ownProps.match.params.hash
+  accountHash: ownProps.match.params.hash,
+  accountLoading: state.accountLoading
 });
 
 const mapDispatchToProps = dispatch => ({

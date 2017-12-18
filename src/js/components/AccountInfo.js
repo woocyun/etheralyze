@@ -20,7 +20,11 @@ const Account = (props) => {
   return (
     <div className="account-info">
       {
-        account ?
+        props.account instanceof Error || !props.account ?
+        <Notification
+          color="red"
+          message={`Account ${ accountHash } does not exist.`}
+        /> :
         <Grid container spacing={24}>
           <Grid item xs={1}></Grid>
           <Grid item xs={10}>
@@ -46,11 +50,7 @@ const Account = (props) => {
             </Paper>
           </Grid>
           <Grid item xs={1}></Grid>
-        </Grid> :
-        <Notification
-          color="red"
-          message={`Account ${ accountHash } does not exist.`}
-        />
+        </Grid>
       }
     </div>
   );
