@@ -63,23 +63,30 @@ const TransactionList = props => {
                 </Link>
               </TableCell>
               <TableCell className="limit-80">
-                <Link to={`/account/${ transaction.to }`}>
-                  <Button color="primary">{transaction.to}</Button>
-                </Link>
+                {
+                  transaction.to ?
+                  <Link to={`/account/${ transaction.to }`}>
+                    <Button color="primary">{transaction.to}</Button>
+                  </Link> :
+                  'Contract Creation'
+                }
               </TableCell>
               <TableCell>{web3.fromWei(transaction.value, 'ether')} Ether</TableCell>
             </TableRow>
           ))
         }
         </TableBody>
-        <TableFooter>
-          <TableRow>
-            <PageNavigation
-              pagination={transactionPagination}
-              onPageChange={changePage}
-            />
-          </TableRow>
-        </TableFooter>
+        {
+          transactionPagination &&
+          <TableFooter>
+            <TableRow>
+              <PageNavigation
+                pagination={transactionPagination}
+                onPageChange={changePage}
+              />
+            </TableRow>
+          </TableFooter>
+        }
       </Table>
     </div>
   );

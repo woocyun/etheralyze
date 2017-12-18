@@ -3,8 +3,9 @@ import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
 import Divider from 'material-ui/Divider';
 import TextFieldSubmit from './TextFieldSubmit';
-import AccountOverview from './AccountOverview';
+import AccountInfoOverview from './AccountInfoOverview';
 import Notification from './Notification';
+import TransactionList from './TransactionList';
 
 const Account = (props) => {
   const {
@@ -20,12 +21,15 @@ const Account = (props) => {
           <Grid item xs={1}></Grid>
           <Grid item xs={10}>
             <Paper className="paper">
-              <AccountOverview
-                address={props.account.address}
+              <AccountInfoOverview
+                accountHash={props.account.accountHash}
                 balance={props.account.balance}
                 transactionCount={props.account.transactionCount}
               />
               <Divider />
+              <TransactionList
+                transactions={props.account.transactions}
+              />
             </Paper>
           </Grid>
           <Grid item xs={1}></Grid>

@@ -6,7 +6,7 @@ import Typography from 'material-ui/Typography';
 
 const web3 = new Web3();
 
-const AccountOverview = props => {
+const AccountInfoOverview = props => {
   return (
     <div className="account-overview">
       <div className="overview-field">
@@ -14,7 +14,7 @@ const AccountOverview = props => {
           Address:
         </Typography>
         <Typography className="val" type="body1">
-          {props.address}
+          {props.accountHash}
         </Typography>
       </div>
       <div className="overview-field">
@@ -37,4 +37,4 @@ const AccountOverview = props => {
   );
 };
 
-export default AccountOverview;
+export default AccountInfoOverview;
