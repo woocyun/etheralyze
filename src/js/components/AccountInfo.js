@@ -6,6 +6,10 @@ import TextFieldSubmit from './TextFieldSubmit';
 import AccountInfoOverview from './AccountInfoOverview';
 import Notification from './Notification';
 import TransactionList from './TransactionList';
+import Button from 'material-ui/Button';
+import {
+  Link
+} from 'react-router-dom';
 
 const Account = (props) => {
   const {
@@ -28,7 +32,16 @@ const Account = (props) => {
               />
               <Divider />
               <TransactionList
+                header={
+                  <div>
+                    Recent Transactions
+                    <Link style={{ marginLeft: 10 }} to={`/transactions?account=${accountHash}`}>
+                      <Button color="primary">View All</Button>
+                    </Link>
+                  </div>
+                }
                 transactions={props.account.transactions}
+                onAccountClick={props.fetchAccount}
               />
             </Paper>
           </Grid>

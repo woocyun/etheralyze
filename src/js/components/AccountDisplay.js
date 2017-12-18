@@ -9,8 +9,7 @@ class AccountDisplay extends Component {
   }
 
   componentDidMount() {
-    console.log('fetching account');
-    this.props.fetchAccount();
+    this.props.fetchAccount()();
   }
 
   render() {
@@ -23,6 +22,7 @@ class AccountDisplay extends Component {
                 <AccountInfo
                   account={this.props.account}
                   accountHash={this.props.accountHash}
+                  fetchAccount={this.props.fetchAccount}
                 />
               </Paper>
             </Grid>

@@ -24,7 +24,9 @@ const TransactionList = props => {
   const {
     transactionPagination,
     transactions,
-    changePage
+    changePage,
+    onAccountClick = () => () => {},
+    header = 'Transactions'
   } = props;
 
   return (
@@ -34,7 +36,7 @@ const TransactionList = props => {
           className="block-list__header"
           type="subheading"
         >
-          Transactions
+          {header}
         </Typography>
       </Toolbar>
       <Table className="no-uppercase">
@@ -59,14 +61,24 @@ const TransactionList = props => {
               <TableCell>{transaction.blockNumber}</TableCell>
               <TableCell className="limit-80">
                 <Link to={`/account/${ transaction.from }`}>
-                  <Button color="primary">{transaction.from}</Button>
+                  <Button
+                    color="primary"
+                    onClick={onAccountClick(transaction.from)}
+                  >
+                    {transaction.from}
+                  </Button>
                 </Link>
               </TableCell>
               <TableCell className="limit-80">
                 {
                   transaction.to ?
                   <Link to={`/account/${ transaction.to }`}>
-                    <Button color="primary">{transaction.to}</Button>
+                    <Button
+                      color="primary"
+                      onClick={onAccountClick(transaction.to)}
+                    >
+                      {transaction.to}
+                    </Button>
                   </Link> :
                   'Contract Creation'
                 }

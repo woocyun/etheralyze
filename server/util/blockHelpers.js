@@ -40,7 +40,7 @@ const getLatestBlocks = () => {
   return Block
     .find()
     .sort({ number: -1 })
-    .limit(5)
+    .limit(10)
     .exec((err, blocks) => {
       if (err) {
         throw new Error(err);

@@ -3,13 +3,14 @@ const web3Helper = require('../util/web3Helper');
 
 function getAccount(req, res) {
   const accountHash = req.query.hash;
+  const transactionQuery = {
+    $or: [{ to: accountHash }, { from: accountHash }]
+  };
 
   Promise.all([
     web3Helper.getAccountBalance(accountHash),
-    web3Helper.getAccountTransactionCount(accountHash),
-    transactionHelpers.getMostRecentTransactions(1, {
-      $or: [{ to: accountHash }, { from: accountHash }]
-    })
+    transactionHelpers.getTransactionCount(transactionQuery),
+    transactionHelpers.getLatestTransactions(transactionQuery)
   ])
     .then(([balance, transactionCount, transactions]) => {
       res.send({

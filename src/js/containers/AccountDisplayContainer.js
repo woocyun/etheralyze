@@ -13,8 +13,8 @@ const mapDispatchToProps = dispatch => ({
 
 const mergeProps = (stateProps, dispatchProps) => {
   return Object.assign({}, stateProps, dispatchProps, {
-    fetchAccount: () => {
-      dispatchProps.dispatch(fetchAccount(stateProps.accountHash));
+    fetchAccount: accountHash => () => {
+      dispatchProps.dispatch(fetchAccount(accountHash || stateProps.accountHash));
     }
   });
 };
