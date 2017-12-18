@@ -18,7 +18,9 @@ class TransactionsDisplay extends Component {
     return (
       <div className="blocks-display">
         <TextFieldSubmit
-          label="Transaction ID"
+          label="Transaction Hash"
+          onSubmit={this.props.onTransactionSearch}
+          type="text"
         />
         <Grid container spacing={24}>
             <Grid item xs={1}></Grid>

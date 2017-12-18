@@ -10,7 +10,7 @@ import red from 'material-ui/colors/red';
 import Header from './Header';
 import OverviewContainer from '../containers/OverviewContainer';
 import AccountDisplayContainer from '../containers/AccountDisplayContainer';
-// import AccountsDisplayContainer from '../containers/AccountsDisplayContainer';
+import AccountsDisplayContainer from '../containers/AccountsDisplayContainer';
 import BlocksDisplayContainer from '../containers/BlocksDisplayContainer';
 import BlockDisplayContainer from '../containers/BlockDisplayContainer';
 import TransactionsDisplayContainer from '../containers/TransactionsDisplayContainer';
@@ -30,7 +30,7 @@ const App = (props) => {
       <div id="etheralyze">
         <Header />
         <Route exact path="/" component={OverviewContainer} />
-        {/* <Route path="/accounts" component={AccountsDisplayContainer} /> */}
+        <Route path="/accounts" component={AccountsDisplayContainer} />
         <Route path="/account/:hash" component={AccountDisplayContainer} />
         <Route path="/blocks" component={BlocksDisplayContainer} />
         <Route path="/block/:number" component={BlockDisplayContainer} />
