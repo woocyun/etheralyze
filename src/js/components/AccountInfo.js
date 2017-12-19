@@ -39,9 +39,9 @@ const Account = (props) => {
                 header={
                   <div>
                     Recent Transactions
-                    <Link style={{ marginLeft: 10 }} to={`/transactions?account=${accountHash}`}>
+                    {/* <Link style={{ marginLeft: 10 }} to={`/transactions?account=${accountHash}`}>
                       <Button color="primary">View All</Button>
-                    </Link>
+                    </Link> */}
                   </div>
                 }
                 transactions={props.account.transactions}

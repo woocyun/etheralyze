@@ -27,7 +27,7 @@ const AccountInfoOverview = props => {
       </div>
       <div className="overview-field">
         <Typography type="body2">
-          No. of Transactions:
+          No. of Sent Transactions:
         </Typography>
         <Typography className="val" type="body1">
           {props.transactionCount}

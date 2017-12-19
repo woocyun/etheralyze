@@ -9,7 +9,8 @@ function getAccount(req, res) {
 
   Promise.all([
     web3Helper.getAccountBalance(accountHash),
-    transactionHelpers.getTransactionCount(transactionQuery),
+    web3Helper.getAccountTransactionCount(accountHash),
+    // transactionHelpers.getTransactionCount(transactionQuery),
     transactionHelpers.getLatestTransactions(transactionQuery, 50)
   ])
     .then(([balance, transactionCount, transactions]) => {
