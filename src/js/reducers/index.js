@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { account, accountLoading } from './accounts';
 import { blocks, blockPagination, block } from './blocks';
-import { transactions, transactionPagination, transaction } from './transactions';
+import { transactions, transactionPagination, transaction, transactionsLoading } from './transactions';
 import { overviewData } from './overview';
 
 export default combineReducers({
@@ -13,5 +13,6 @@ export default combineReducers({
   block,
   transactions,
   transactionPagination,
-  transaction
+  transaction,
+  transactionsLoading
 });

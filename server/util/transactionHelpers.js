@@ -26,11 +26,11 @@ const getMostRecentTransactions = (page, mongoQuery) => {
     });
 };
 
-const getLatestTransactions = (mongoQuery = {}) => {
+const getLatestTransactions = (mongoQuery = {}, limit = 10) => {
   return Transaction
     .find(mongoQuery)
     .sort([['blockNumber', -1], ['transactionIndex', -1]])
-    .limit(10)
+    .limit(limit)
     .exec((err, transactions) => {
       if (err) {
         throw new Error(err);

@@ -9,13 +9,16 @@ import {
   FirstPage,
   LastPage
 } from 'material-ui-icons';
+import queryString from 'query-string';
 
 class PageNavigation extends Component {
   constructor(props) {
     super(props);
 
+    const currentPage = queryString.parse(location.search).page;
+
     this.state = {
-      page: 1,
+      page: currentPage ? Number(currentPage) : 1,
       pageSpecified: 1
     };
 
