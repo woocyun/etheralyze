@@ -67,9 +67,10 @@ const BlockList = props => {
               </TableCell>
               <TableCell className="limit-80">{block.uncles.length}</TableCell>
               <TableCell className="limit-80">
-                <Link to={`/account/${block.miner}`}>
+                {block.miner}
+                {/* <Link to={`/account/${block.miner}`}>
                   <Button color="primary">{block.miner}</Button>
-                </Link>
+                </Link> */}
               </TableCell>
               <TableCell className="limit-80">{`${block.gasUsed} (${(block.gasUsed / block.gasLimit * 100).toFixed(2)}%)`}</TableCell>
               <TableCell>{block.gasLimit}</TableCell>

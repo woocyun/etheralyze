@@ -51,9 +51,10 @@ const TransactionInfo = props => {
               <TableRow>
                 <TableCell>From</TableCell>
                 <TableCell>
-                  <Link to={`/account/${ transaction.from }`}>
+                  {transaction.from}
+                  {/* <Link to={`/account/${ transaction.from }`}>
                     <span className="link">{transaction.from}</span>
-                  </Link>
+                  </Link> */}
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -61,9 +62,10 @@ const TransactionInfo = props => {
                 <TableCell>
                   {
                     transaction.to ?
-                    <Link to={`/account/${ transaction.to }`}>
-                      <span className="link">{transaction.to}</span>
-                    </Link> :
+                    // <Link to={`/account/${ transaction.to }`}>
+                    //   <span className="link">{transaction.to}</span>
+                    // </Link> :
+                    transaction.to :
                     'Contract Creation'
                   }
                 </TableCell>

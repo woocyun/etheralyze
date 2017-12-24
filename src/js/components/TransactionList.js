@@ -74,26 +74,28 @@ const TransactionList = props => {
                     </TableCell>
                     <TableCell>{transaction.blockNumber}</TableCell>
                     <TableCell className="limit-80">
-                      <Link to={`/account/${ transaction.from }`}>
+                      {transaction.from}
+                      {/* <Link to={`/account/${ transaction.from }`}>
                         <Button
                           color="primary"
                           onClick={onAccountClick(transaction.from)}
                         >
                           {transaction.from}
                         </Button>
-                      </Link>
+                      </Link> */}
                     </TableCell>
                     <TableCell className="limit-80">
                       {
                         transaction.to ?
-                        <Link to={`/account/${ transaction.to }`}>
-                          <Button
-                            color="primary"
-                            onClick={onAccountClick(transaction.to)}
-                          >
-                            {transaction.to}
-                          </Button>
-                        </Link> :
+                        // <Link to={`/account/${ transaction.to }`}>
+                        //   <Button
+                        //     color="primary"
+                        //     onClick={onAccountClick(transaction.to)}
+                        //   >
+                        //     {transaction.to}
+                        //   </Button>
+                        // </Link> :
+                        transaction.to :
                         'Contract Creation'
                       }
                     </TableCell>

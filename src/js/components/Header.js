@@ -35,7 +35,7 @@ class Header extends Component {
       { location: '/', name: 'Overview'},
       { location: '/blocks', name: 'Blocks'},
       { location: '/transactions', name: 'Transactions'},
-      { location: '/accounts', name: 'Accounts'}
+      // { location: '/accounts', name: 'Accounts'}
     ]
     return (
       <div className="header">
